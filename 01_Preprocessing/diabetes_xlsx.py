@@ -14,7 +14,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import requests
 
 print('\n - Lendo o arquivo com o dataset sobre diabetes')
-data = pd.read_excel('diabetes_dataset.xlsx')
+data = pd.read_excel('diabetes_dataset_original.xlsx')
 
 # Criando X and y par ao algorítmo de aprendizagem de máquina.\
 print(' - Criando X e y para o algoritmo de aprendizagem a partir do arquivo diabetes_dataset')
@@ -38,7 +38,7 @@ y_pred = neigh.predict(data_app)
 URL = "https://aydanomachado.com/mlclass/01_Preprocessing.php"
 
 #TODO Substituir pela sua chave aqui
-DEV_KEY = "COLOCAR_SUA_KEY_AQUI"
+DEV_KEY = "Ponte de Safena"
 
 # json para ser enviado para o servidor
 data = {'dev_key':DEV_KEY,
