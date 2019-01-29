@@ -21,13 +21,13 @@ Genetic algorithm parameters:
     Mating pool size
     Population size
 """
-sol_per_pop = 8
-num_parents_mating = 4
+sol_per_pop = 50
+num_parents_mating = 25
 
 # Defining the population size.
 pop_size = (sol_per_pop,num_weights) # The population will have sol_per_pop chromosome where each chromosome has num_weights genes.
 #Creating the initial population.
-new_population = numpy.random.uniform(low=-1000, high=1000, size=pop_size)
+new_population = numpy.random.uniform(low=0, high=360, size=pop_size)
 print(new_population)
 
 """
@@ -40,7 +40,7 @@ new_population[5, :] = [-2,   3,   -7, 6,   3,    3]
 """
 
 best_outputs = []
-num_generations = 1000
+num_generations = 10
 for generation in range(num_generations):
     print("Generation : ", generation)
     # Measuring the fitness of each chromosome in the population.

@@ -1,4 +1,4 @@
-import numpy, requests
+import numpy, requests, json
 
 def cal_pop_fitness(equation_inputs, pop):
     # Calculating the fitness value of each solution in the current population.
@@ -8,8 +8,8 @@ def cal_pop_fitness(equation_inputs, pop):
     for dude in pop:
         for i in range(6):
             angle.append(str(int(dude[i])%360))
-        url = 'http://192.168.0.15:8080/antenna/simulate?phi1='+ angle[0] +'&theta1='+ angle[1] +'&phi2='+ angle[2] +'&theta2='+ angle[3] +'&phi3='+ angle[4] +'&theta3='+ angle[5]
-        fitness.append(float(requests.get(url).text.split('\n')[0]))
+        url = 'https://aydanomachado.com/mlclass/02_Optimization.php?phi1='+ angle[0] +'&theta1='+ angle[1] +'&phi2='+ angle[2] +'&theta2='+ angle[3] +'&phi3='+ angle[4] +'&theta3='+ angle[5] + '&dev_key=Ponte de Safena' 
+        fitness.append(json.loads(requests.get(url).text)['gain'])
 
     return numpy.array(fitness)
 
