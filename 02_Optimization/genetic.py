@@ -21,8 +21,8 @@ Genetic algorithm parameters:
     Mating pool size
     Population size
 """
-sol_per_pop = 50
-num_parents_mating = 25
+sol_per_pop = 100
+num_parents_mating = 50
 
 # Defining the population size.
 pop_size = (sol_per_pop,num_weights) # The population will have sol_per_pop chromosome where each chromosome has num_weights genes.
@@ -40,7 +40,7 @@ new_population[5, :] = [-2,   3,   -7, 6,   3,    3]
 """
 
 best_outputs = []
-num_generations = 10
+num_generations = 20
 for generation in range(num_generations):
     print("Generation : ", generation)
     # Measuring the fitness of each chromosome in the population.
@@ -52,9 +52,9 @@ for generation in range(num_generations):
     best_outputs.append(numpy.max(fitness))
     # The best result in the current iteration.
     print("Best result : ", numpy.max(numpy.sum(fitness)))
-    
+
     # Selecting the best parents in the population for mating.
-    parents = GA.select_mating_pool(new_population, fitness, 
+    parents = GA.select_mating_pool(new_population, fitness,
                                       num_parents_mating)
     print("Parents")
     print(parents)
@@ -73,7 +73,7 @@ for generation in range(num_generations):
     # Creating the new population based on the parents and offspring.
     new_population[0:parents.shape[0], :] = parents
     new_population[parents.shape[0]:, :] = offspring_mutation
-    
+
 # Getting the best solution after iterating finishing all generations.
 #At first, the fitness is calculated for each solution in the final generation.
 fitness = GA.cal_pop_fitness(equation_inputs, new_population)
@@ -82,7 +82,9 @@ best_match_idx = numpy.where(fitness == numpy.max(fitness))
 
 print("Best solution : ", new_population[best_match_idx, :])
 print("Best solution fitness : ", fitness[best_match_idx])
-
+bestSol = new_population[best_match_idx,:]
+# import pdb;pdb.set_trace()
+resp = requests.get("https://aydanomachado.com/mlclass/02_Optimization.php?phi1=%d&theta1=%d&phi2=%d&theta2=%d&phi3=%d&theta3=%d&dev_key=%s" % (bestSol[0][0][0],bestSol[0][0][1],bestSol[0][0][2],bestSol[0][0][3],bestSol[0][0][4],bestSol[0][0][5],"Ponte de Safena"))
 
 import matplotlib.pyplot
 matplotlib.pyplot.plot(best_outputs)
