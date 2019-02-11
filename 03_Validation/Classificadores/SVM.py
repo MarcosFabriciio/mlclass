@@ -25,6 +25,7 @@ print('\n - Lendo o arquivo com o dataset sobre abalone')
 # abalone_app = pd.read_csv('abalone_app_min_max.csv')
 # y_pred = svm.predict(abalone_app)
 y_pred = pd.read_csv("respostas.csv")
+
 # Enviando previsões realizadas com o modelo para o servidor
 URL = "https://aydanomachado.com/mlclass/03_Validation.php"
 
