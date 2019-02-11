@@ -34,7 +34,7 @@ DEV_KEY = 'Ponte de Safena'
 # json para ser enviado para o servidor
 y_pred =pd.Series(np.array(y_pred).transpose()[0])
 data = {'dev_key':DEV_KEY,
-        'predictions':pd.Series(y_pred).to_json(orient='values')}
+        'predictions':y_pred.to_json(orient='values')}
 
 # Enviando requisição e salvando o objeto resposta
 r = requests.post(url = URL, data = data)
