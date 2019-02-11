@@ -29,11 +29,12 @@ y_pred = pd.read_csv("respostas.csv")
 URL = "https://aydanomachado.com/mlclass/03_Validation.php"
 
 #TODO Substituir pela sua chave aqui
-DEV_KEY = "Ponte de Safena"
+DEV_KEY = 'Ponte de Safena'
 
 # json para ser enviado para o servidor
+y_pred =pd.Series(np.array(y_pred).transpose()[0])
 data = {'dev_key':DEV_KEY,
-        'predictions':y_pred.to_json(orient='values')}
+        'predictions':pd.Series(y_pred).to_json(orient='values')}
 
 # Enviando requisição e salvando o objeto resposta
 r = requests.post(url = URL, data = data)
